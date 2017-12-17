@@ -1,0 +1,33 @@
+### 1. 部署进度
+
+#### 浏览器对ES6的支持 ：http://kangax.github.io/compat-table/es6/
+
+#### 对node的支持：
+
+1. javascript语言的服务器运行环境（runtime）：node，它对ES6的支持度高。
+
+  ```
+//查看node中已经实现的ES6特性
+$node --v8-options | grep harmony
+  ```
+2. 查看各种运行环境对ES6的支持：https://github.com/ruanyf/es-checker
+
+3. 查看自己所用浏览器对ES6的支持：http://ruanyf.github.io/es-checker/
+
+4. 查看本机对node的支持：
+```
+$ npm install -g es-checker
+$ es-checker
+```
+
+### 2. Babel转码器
+
+1. 作用：可以将ES6代码转化为ES5代码，从而在浏览器或者其他环境执行。
+
+2. ES6转码器：http://babeljs.io/
+
+#### 2.1 配置文件.babelrc
+
+#### 2.2 命令行转码babel-cli
+
+### babel-node
