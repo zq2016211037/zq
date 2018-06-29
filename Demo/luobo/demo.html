@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#lunbo{
+			position: relative;
+			width: 50%;
+			margin: 100px auto;
+			width: 400px;
+			height: 300px;
+		}
+		#imgs img{
+			width: 400px;
+			height: 300px;
+		}
+		#prev_next{
+			position: absolute;
+			top: 50%;
+		}
+		#prev{
+			display: inline-block;
+			left: 5%;
+			padding: 10px;
+			background: rgba(0,0,0,.3);
+		}
+		#next{
+			/*position: absolute;*/
+			display: inline-block;
+			right: 5%;
+			margin-left: 330px;
+			padding: 10px;
+			background: rgba(0,0,0,.3);
+		}
+	</style>
+</head>
+<body>
+	<div id="lunbo">
+		<div id="imgs">
+			<img src="http://picture.ik123.com/uploads/allimg/180620/12-1P620111405.jpg" index='0'>
+			<img src="http://www.wxxyx.cn/uploads/allimg/180606/1145195R2_0.png" index='1'>
+			<img src="http://img0.imgtn.bdimg.com/it/u=4208563899,849044905&fm=11&gp=0.jpg" index='2'>
+		</div>
+		<div id="prev_next">
+			<span id="prev"><</span>
+			<span id="next">></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		(function luobow(){
+			var lunbo = document.getElementById('lunbo');	//wrapper
+			var imgs = 	document.getElementById('imgs').children;	//图片
+			var prev = document.getElementById('prev');		//前一张
+			var next = document.getElementById('next');		//后一张
+			var curIndex = 0;	//默认选中
+			var imgLen = imgs.length;	//图片张数
+			//切换图片
+			function switcImg(towards){
+
+				curIndex = (curIndex + towards + imgLen) % imgLen;
+				Object.keys(imgs).forEach(function(index,val,arrar){
+					imgs.item(index).style.display = 'none';
+				})
+				imgs.item(curIndex).style.display = 'block';
+
+			}
+
+			//开始状态
+			switcImg(0);
+
+			//自动轮播
+			var playauto = setInterval(function(){
+				switcImg(1);
+			},1000);
+
+			//鼠标悬停停止自动轮播
+			lunbo.addEventListener('mouseover',function(){
+				clearInterval(playauto);
+				// alert('ll');
+			},false);
+			//移除继续自动轮播
+			lunbo.addEventListener('mouseout',function(){
+				setInterval(function(){
+					switcImg(1);
+				},1500);
+			},false);
+			//前一张
+			prev.addEventListener('click',function(){
+				// switchCurIndex(1);
+				switcImg(1);
+			},false);
+			//后一张
+			next.addEventListener('click',function(){
+				// switchCurIndex(-1);
+				switcImg(-1);
+			},false);
+
+		})();
+	</script>
+</body>
+</html>
