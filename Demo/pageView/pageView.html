@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="pages">
+		<div class="page_item">
+			this is first page
+		</div>
+		<div class="page_item">
+			this is first page
+		</div>
+		<div class="page_item">
+			this is first page
+		</div>
+		<div class="page_item">
+			this is first page
+		</div>
+		<div class="page_item">
+			this is second page
+		</div>
+		<div class="page_item">
+			this is second page
+		</div>
+		<div class="page_item">
+			this is second page
+		</div>
+		<div class="page_item">
+			this is second page
+		</div>
+		<div class="page_item">
+			this is third page
+		</div>
+
+		<div id="pageBtns">
+			<span id="prev"><</span>
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span>...</span>
+			<span>9</span>
+			<span id="next">></span>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function(){
+			var curPage = 0 ;	//当前页数
+			var countPerPage = 4;	//每页数目
+			var totalPage;	//总共页数
+
+			var page_items = document.getElementsByClassName('page_item');		//记录
+			var prevBtn = document.getElementById('prev');
+			var nextBtn = document.getElementById('next');
+			
+			function showPage(n){
+				Object.keys(page_items).forEach(function(index,val,array){
+					page_items.item(index).style.display = 'none';
+				})
+				curPage += n;
+				console.log(curPage);
+				for(var i = curPage*countPerPage ;i <(curPage+1)*countPerPage;i++){
+					console.log(i);
+					if(i<0){
+						alert('已经是第一页');
+						return;
+					}else if(i <= page_items.length){
+						page_items.item(i).style.display = 'block';
+					}else{
+						alert('已经是最后一页');
+						return;
+					}
+				}
+			}
+
+			//初始状态
+			(function initPage(){
+				// Object.keys(page_items).forEach(function(index,val,array){
+				// 	page_items.item(index).style.display = 'none';
+				// })
+				showPage(0);
+			})();
+
+			//前一页
+			prevBtn.addEventListener('click',function(){
+				showPage(-1);
+			},false);
+
+			//后一页
+			nextBtn.addEventListener('click',function(){
+				showPage(1);
+			},false);
+		}
+	</script>
+</body>
+</html>
